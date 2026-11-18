@@ -1,21 +1,156 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="ca">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mis recorridos diarios</title>
-  <!-- El nombre tiene que coincidir con el del archivo: style.css -->
+  <meta name="theme-color" content="#f4f2e9">
+  <meta name="description" content="Una investigació visual sobre els hàbits de mobilitat diaris i les alternatives més sostenibles a Barcelona.">
+  <title>Mobilitat diària — Barcelona</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
+  <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress"></span></div>
+  <a class="skip-link" href="#contingut">Salta al contingut</a>
+  <header class="site-header">
+    <a class="wordmark" href="#inici" aria-label="Mobilitat diària, inici"><span class="wordmark-mark" aria-hidden="true">M</span><span>MOBILITAT<br>DIÀRIA</span></a>
+    <nav class="main-nav" aria-label="Navegació principal">
+      <a href="#recerca">La recerca</a>
+      <a href="#registre">Registre</a>
+      <a href="#referents">Referents</a>
+    </nav>
+    <a class="header-cta" href="#registre">Explora els teus trajectes <span aria-hidden="true">↗</span></a>
+    <button class="menu-toggle" type="button" aria-label="Obre el menú" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button>
+  </header>
 
-  <h1>Mis recorridos diarios</h1>
-  <p>Un proyecto que explora los trayectos que hago cada día y el transporte que uso, para concienciar sobre la importancia de elegir opciones más sostenibles.</p>
+  <main id="contingut">
+    <section class="hero section-shell" id="inici" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="live-dot"></span> RECERCA SOBRE MOBILITAT · BARCELONA</p>
+        <h1 id="hero-title">Com són de sostenibles els meus <em>desplaçaments</em> diaris?</h1>
+        <p class="hero-intro">Una mirada propera als trajectes que fem cada dia i als petits canvis que poden fer la ciutat més habitable.</p>
+        <a class="round-link" href="#recerca"><span>Descobreix la recerca</span><span class="round-arrow" aria-hidden="true">↓</span></a>
+        <span class="hero-index">01 — 06</span>
+      </div>
+      <div class="hero-art" aria-label="Mapa esquemàtic de Barcelona amb tres recorreguts de mobilitat">
+        <div class="map-topline"><span>BARCELONA, CATALUNYA</span><span>41°23′N&nbsp; 2°10′E</span></div>
+        <svg class="city-map" viewBox="0 0 760 700" role="img" aria-labelledby="map-title map-desc">
+          <title id="map-title">Traçats urbans de Barcelona</title>
+          <desc id="map-desc">Un mapa il·lustrat amb carrers, espais verds, la costa i un recorregut destacat.</desc>
+          <defs>
+            <pattern id="street-grid" width="44" height="44" patternUnits="userSpaceOnUse" patternTransform="rotate(-9)">
+              <path d="M44 0H0V44" fill="none" stroke="#849486" stroke-width="1.4" opacity=".65"/>
+              <path d="M22 0V44M0 22H44" fill="none" stroke="#a4ada0" stroke-width=".7" opacity=".55"/>
+            </pattern>
+            <clipPath id="city-clip"><path d="M25 78 660 34 691 564 84 649Z"/></clipPath>
+          </defs>
+          <path d="M25 78 660 34 691 564 84 649Z" fill="#e9e9d9"/>
+          <g clip-path="url(#city-clip)">
+            <rect x="5" y="20" width="700" height="650" fill="url(#street-grid)"/>
+            <path d="M50 116 216 91 241 173 91 204ZM424 91 628 74 637 181 451 197ZM116 481 255 450 296 589 135 614ZM446 379 648 359 663 471 486 505Z" fill="#c8d3bd" opacity=".95"/>
+            <path d="M-2 340 707 293M62 37 316 675M318 26 500 648M-10 510 670 445M193 0 290 720M564 0 439 710" fill="none" stroke="#f4f2e9" stroke-width="10" opacity=".95"/>
+            <path d="M352 49 322 162 376 239 334 328 388 397 355 510 404 631" fill="none" stroke="#879b89" stroke-width="4" stroke-dasharray="3 8" opacity=".9"/>
+            <path class="route route-metro" d="M102 534C179 489 184 395 284 376S391 322 427 251 518 174 602 135" fill="none" stroke="#245e48" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path class="route route-walk" d="M102 534C179 489 184 395 284 376S391 322 427 251 518 174 602 135" fill="none" stroke="#f4b942" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path class="route route-bike" d="M102 534C179 489 184 395 284 376S391 322 427 251 518 174 602 135" fill="none" stroke="#c26648" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="102" cy="534" r="11" fill="#f4f2e9" stroke="#245e48" stroke-width="5"/><circle cx="602" cy="135" r="11" fill="#245e48" stroke="#f4f2e9" stroke-width="4"/>
+            <circle cx="284" cy="376" r="6" fill="#f4f2e9" stroke="#245e48" stroke-width="3"/><circle cx="427" cy="251" r="6" fill="#f4f2e9" stroke="#245e48" stroke-width="3"/>
+            <g fill="#245e48" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1.6"><text x="76" y="570">SANTS</text><text x="526" y="111">GRÀCIA</text><text x="474" y="541">POBLE NOU</text><text x="496" y="608">MEDITERRÀNIA</text></g>
+          </g>
+          <path d="M679 34C714 107 690 144 717 212S685 329 719 396 688 492 718 563L691 564 660 34Z" fill="#245e48"/>
+          <text x="706" y="299" transform="rotate(84 706 299)" fill="#f4f2e9" font-family="Arial,sans-serif" font-size="12" letter-spacing="3">MAR MEDITERRÀNIA</text>
+          <path d="M78 88h52M78 88v52" stroke="#245e48" stroke-width="2"/><text x="83" y="111" fill="#245e48" font-family="Arial,sans-serif" font-size="11" font-weight="700">N</text>
+        </svg>
+        <div class="map-caption"><span class="map-pin" aria-hidden="true">↗</span><span>Un recorregut quotidià<br><strong>de casa al centre</strong></span><span class="map-scale">0&nbsp;&nbsp;—&nbsp;&nbsp;2 km</span></div>
+        <div class="map-stamp" aria-hidden="true">CIUTAT<br><b>EN<br>MOVIMENT</b></div>
+      </div>
+      <div class="hero-bottom"><span>OBSERVAR · ENTENDRE · TRANSFORMAR</span><span>DESPLAÇA'T PER CONTINUAR ↓</span></div>
+    </section>
 
-  <button id="boton">Ver mi pregunta</button>
-  <p id="texto" hidden>¿Cómo de sostenibles son mis desplazamientos diarios y qué cambios podría hacer para reducir mi impacto?</p>
+    <section class="research section-shell" id="recerca" aria-labelledby="research-title">
+      <div class="section-heading"><p class="eyebrow">01 / PUNT DE PARTIDA</p><span class="section-rule"></span><span class="section-count">UNA PREGUNTA, MOLTS CAMINS</span></div>
+      <div class="research-grid">
+        <h2 id="research-title">La ciutat es transforma cada vegada que <em>ens movem.</em></h2>
+        <div class="research-copy"><p>Aquest projecte observa quins mitjans de transport faig servir en el dia a dia i quin impacte tenen les meves decisions. A partir del registre dels trajectes, busco alternatives més sostenibles que encaixin amb la rutina real.</p><p class="small-note"><span class="note-mark">↳</span> Una investigació quotidiana, situada a Barcelona i oberta als petits canvis.</p></div>
+      </div>
+      <div class="research-facts">
+        <article><span class="fact-number">A</span><h3>Observar</h3><p>Identificar hàbits, distàncies i modes de transport.</p></article>
+        <article><span class="fact-number">B</span><h3>Comparar</h3><p>Posar al costat els trajectes habituals i les alternatives.</p></article>
+        <article><span class="fact-number">C</span><h3>Repensar</h3><p>Trobar canvis petits que puguin formar part de cada dia.</p></article>
+      </div>
+    </section>
 
-  <!-- El JavaScript va al final, cuando la página ya está cargada -->
-  <script src="script.js"></script>
+    <section class="tracker section-shell" id="registre" aria-labelledby="tracker-title">
+      <div class="section-heading"><p class="eyebrow">02 / REGISTRE OBERT</p><span class="section-rule"></span><span class="section-count">LES TEVES DADES, EN TEMPS REAL</span></div>
+      <div class="tracker-intro"><div><h2 id="tracker-title">Quin camí has fet <em>avui?</em></h2><p>Afegeix un trajecte i mira com canvia el teu registre. Les dades es queden en aquesta pàgina mentre la tens oberta.</p></div><div class="tracker-total"><strong id="total-km">0</strong><span>km registrats</span></div></div>
+      <div class="tracker-panel">
+        <form class="trip-form" id="trip-form">
+          <label for="trip-name">El trajecte <span>(opcional)</span></label>
+          <input id="trip-name" name="name" type="text" maxlength="38" placeholder="Ex. Casa a la feina">
+          <label for="trip-mode">Com t'has desplaçat?</label>
+          <select id="trip-mode" name="mode">
+            <option value="walk">A peu</option>
+            <option value="bike">En bicicleta</option>
+            <option value="transit">Transport públic</option>
+            <option value="car">En cotxe</option>
+          </select>
+          <label for="trip-distance">Distància aproximada</label>
+          <div class="distance-input"><input id="trip-distance" name="distance" type="number" min="0.1" max="500" step="0.1" placeholder="0,0" required inputmode="decimal"><span>km</span></div>
+          <button class="submit-button" type="submit">Afegir trajecte <span aria-hidden="true">↗</span></button>
+          <p class="form-message" id="form-message" role="status" aria-live="polite">No cal introduir dades personals.</p>
+        </form>
+        <div class="trip-results">
+          <div class="results-head"><h3>El teu registre</h3><span id="trip-count">0 trajectes</span></div>
+          <div class="mode-bars" id="mode-bars" aria-label="Kilòmetres per mitjà de transport">
+            <div class="bar-row" data-mode="walk"><span class="bar-label"><i></i>A peu</span><span class="bar-track"><i class="bar-fill"></i></span><span class="bar-value">0 km</span></div>
+            <div class="bar-row" data-mode="bike"><span class="bar-label"><i></i>Bicicleta</span><span class="bar-track"><i class="bar-fill"></i></span><span class="bar-value">0 km</span></div>
+            <div class="bar-row" data-mode="transit"><span class="bar-label"><i></i>Transport públic</span><span class="bar-track"><i class="bar-fill"></i></span><span class="bar-value">0 km</span></div>
+            <div class="bar-row" data-mode="car"><span class="bar-label"><i></i>Cotxe</span><span class="bar-track"><i class="bar-fill"></i></span><span class="bar-value">0 km</span></div>
+          </div>
+          <ul class="trip-list" id="trip-list"><li class="empty-state">Encara no hi ha cap trajecte. Comença amb el d'avui.</li></ul>
+          <p class="data-footnote">Registre de mostra interactiu · no s'envia ni es desa en línia</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="references section-shell" id="referents" aria-labelledby="references-title">
+      <div class="section-heading"><p class="eyebrow">03 / UNIVERS VISUAL</p><span class="section-rule"></span><span class="section-count">QUATRE MIRADES</span></div>
+      <div class="references-intro"><h2 id="references-title">Referents que marquen <em>el to.</em></h2><p>Natura, tecnologia i objectes quotidians: quatre maneres de comunicar amb personalitat i claredat.</p></div>
+      <div class="reference-grid">
+        <a class="reference-card terra-card" href="https://myterra.ai/" target="_blank" rel="noreferrer"><div class="ref-visual"><span class="terra-orb">↗</span><span class="visual-caption">NOT ALL WHO<br>WANDER ARE LOST</span></div><div class="ref-meta"><span class="ref-num">01</span><div><h3>Myterra</h3><p>Minimalisme, natura i calma visual.</p></div><span class="ref-arrow" aria-hidden="true">↗</span></div></a>
+        <a class="reference-card teenage-card" href="https://teenage.engineering/" target="_blank" rel="noreferrer"><div class="ref-visual"><div class="te-device"><span>TE<br><b>35</b></span><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="visual-caption">OBJECTS FOR<br>EVERYDAY LIFE</span></div><div class="ref-meta"><span class="ref-num">02</span><div><h3>Teenage Engineering</h3><p>Precisió tècnica amb caràcter.</p></div><span class="ref-arrow" aria-hidden="true">↗</span></div></a>
+        <a class="reference-card nothing-card" href="https://nothing.tech/" target="_blank" rel="noreferrer"><div class="ref-visual"><span class="nothing-glyph" aria-hidden="true">⠿</span><span class="visual-caption">MAKE IT<br>NOTHING</span><div class="dot-grid" aria-hidden="true"></div></div><div class="ref-meta"><span class="ref-num">03</span><div><h3>Nothing</h3><p>Transparència, ordre i tecnologia.</p></div><span class="ref-arrow" aria-hidden="true">↗</span></div></a>
+        <a class="reference-card playdate-card" href="https://play.date/" target="_blank" rel="noreferrer"><div class="ref-visual"><div class="playdate-device"><div class="playdate-screen">MOVE<br><span>PLAY</span></div><i></i><b>+</b><b>●</b><b>■</b><b>●</b></div><span class="visual-caption">A LITTLE<br>FUN GOES FAR</span></div><div class="ref-meta"><span class="ref-num">04</span><div><h3>Playdate</h3><p>Color, optimisme i interacció.</p></div><span class="ref-arrow" aria-hidden="true">↗</span></div></a>
+      </div>
+    </section>
+
+    <section class="framework section-shell" aria-labelledby="framework-title">
+      <div class="section-heading"><p class="eyebrow">04 / MARC DE RECERCA</p><span class="section-rule"></span><span class="section-count">LES QUATRE QÜESTIONS</span></div>
+      <div class="framework-head"><h2 id="framework-title">Quatre preguntes<br>per <em>orientar el canvi.</em></h2><p>Un mapa de preguntes que connecta la recerca amb les decisions de cada dia.</p></div>
+      <div class="question-grid">
+        <article class="question-card"><span class="question-label">01 · VISIÓ</span><h3>Què vull aconseguir?</h3><p>Entendre si els meus hàbits de mobilitat poden ser més sostenibles sense perdre de vista el temps i la rutina diària.</p></article>
+        <article class="question-card"><span class="question-label">02 · VIA</span><h3>Contra què lluito?</h3><p>Contra la normalització dels trajectes contaminants i la falta de consciència sobre l'impacte de les decisions quotidianes.</p></article>
+        <article class="question-card"><span class="question-label">03 · OPORTUNITAT</span><h3>Què em fa diferent?</h3><p>Utilitzar les meves pròpies dades de mobilitat per visualitzar les emissions que genero i comparar alternatives més sostenibles.</p></article>
+        <article class="question-card"><span class="question-label">04 · PERSONES</span><h3>A qui m'adreço?</h3><p>A persones que es desplacen diàriament i volen entendre l'impacte ambiental de la seva mobilitat.</p></article>
+      </div>
+    </section>
+
+    <section class="identity section-shell" aria-labelledby="identity-title">
+      <div class="section-heading"><p class="eyebrow">05 / IDENTITAT</p><span class="section-rule"></span><span class="section-count">VALORS I PERSONALITAT</span></div>
+      <div class="identity-grid">
+        <div class="keywords"><h2 id="identity-title">Paraules<br>que ens <em>mouen.</em></h2><ul class="keyword-list"><li>Mobilitat</li><li>Sostenibilitat</li><li>Desplaçaments</li><li>Emissions</li><li>Consciència</li><li>Rutina</li><li>Impacte</li><li>Visualització</li><li>Eficiència</li></ul></div>
+        <div class="identity-column"><p class="eyebrow">ELS NOSTRES VALORS</p><article><h3>Sostenible</h3><p>Promou hàbits de mobilitat més respectuosos amb l'entorn.</p></article><article><h3>Personal</h3><p>Parteix de les meves pròpies dades i experiències quotidianes.</p></article><article><h3>Conscient</h3><p>Convida a reflexionar sobre l'impacte de les nostres decisions.</p></article><article><h3>Transformador</h3><p>Busca generar petits canvis en els hàbits diaris.</p></article></div>
+        <div class="identity-column personality"><p class="eyebrow">LA PERSONALITAT</p><article><h3>Directa</h3><p>Comunica la informació de manera clara i sense complicacions.</p></article><article><h3>Minimalista</h3><p>Utilitza una composició neta, ordenada i sense elements innecessaris.</p></article><article><h3>Informativa</h3><p>Presenta dades i comparacions per facilitar la comprensió.</p></article><article><h3>Contemporània</h3><p>Transmet una imatge actual mitjançant una estètica digital i funcional.</p></article></div>
+      </div>
+    </section>
+
+    <section class="conclusion section-shell" aria-labelledby="conclusion-title">
+      <div class="conclusion-map" aria-hidden="true"><svg viewBox="0 0 600 350"><path d="M20 250 120 30 250 315 350 50 580 300M0 140 600 200M40 320 560 20M140 0 460 350M290 0 130 350M500 0 320 350" fill="none" stroke="currentColor" stroke-width="2"/><path d="M65 266C170 230 200 130 285 173S402 223 530 65" fill="none" stroke="#f4b942" stroke-width="8" stroke-linecap="round"/></svg></div>
+      <p class="eyebrow">06 / CONCLUSIÓ</p><h2 id="conclusion-title">Una ciutat millor<br>comença amb <em>un trajecte.</em></h2><div class="conclusion-bottom"><p>Entendre com ens movem és el primer pas per canviar-ho. Si observem les nostres rutines, comparem alternatives i fem visibles les dades, podem prendre decisions més conscients i contribuir a una mobilitat més responsable i respectuosa amb el medi ambient.</p><a class="round-link light-link" href="#inici"><span>Torna a l'inici</span><span class="round-arrow" aria-hidden="true">↑</span></a></div>
+    </section>
+  </main>
+  <footer class="site-footer"><a class="wordmark" href="#inici"><span class="wordmark-mark" aria-hidden="true">M</span><span>MOBILITAT<br>DIÀRIA</span></a><span>UNA RECERCA SOBRE EL MOVIMENT QUOTIDIÀ</span><a href="#inici">BARCELONA · 2026 ↑</a></footer>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Navegació mòbil" hidden><a href="#recerca">La recerca</a><a href="#registre">Registre</a><a href="#referents">Referents</a></nav>
 </body>
 </html>
+
