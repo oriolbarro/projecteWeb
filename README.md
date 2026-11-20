@@ -1,6 +1,6 @@
-# Mobilitat diària — Barcelona
+# Camins de cada dia — Barcelona
 
-Una web editorial i interactiva basada en la investigació sobre els hàbits de mobilitat sostenible a Barcelona.
+Una web editorial i interactiva basada en la investigació sobre els hàbits de mobilitat sostenible a Barcelona. La identitat visual s'inspira en una estètica contemplativa i orgànica: espai, textures topogràfiques i una brúixola creada per al projecte.
 
 ## Fitxers
 
