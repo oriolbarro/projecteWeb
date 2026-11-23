@@ -38,6 +38,7 @@ if (mapLibreAvailable) {
   fallbackRoute = mapElement.querySelector('#fallback-route');
 }
 let activeRoute = routes[0];
+let routeEndMarkers = [];
 
 function projectPoint([lat, lon]) {
   return [(lon - 2.08) * 5000, (41.46 - lat) * 6000];
@@ -54,7 +55,7 @@ function showFallbackRoute(route) {
   fallbackSvg.setAttribute('viewBox',`${fallbackView.x} ${fallbackView.y} ${fallbackView.w} ${fallbackView.h}`);
   const line = points.map((point,index) => `${index?'L':'M'}${point[0]} ${point[1]}`).join(' ');
   const start = points[0], end = points.at(-1);
-  fallbackRoute.innerHTML = `<path d="${line}" fill="none" stroke="#fffdf8" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="${line}" fill="none" stroke="${route.color}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${start[0]}" cy="${start[1]}" r="9" fill="#fffdf8"/><circle cx="${start[0]}" cy="${start[1]}" r="6" fill="${route.color}"/><circle cx="${end[0]}" cy="${end[1]}" r="9" fill="#fffdf8"/><circle cx="${end[0]}" cy="${end[1]}" r="6" fill="${route.color}"/>`;
+  fallbackRoute.innerHTML = `<path d="${line}" fill="none" stroke="#fffdf8" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="${line}" fill="none" stroke="${route.color}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${start[0]}" cy="${start[1]}" r="13" fill="${route.color}" stroke="#fffdf8" stroke-width="3"/><text x="${start[0]}" y="${start[1]}" text-anchor="middle" dominant-baseline="central" fill="#fffdf8" font-size="11" font-weight="700">A</text><circle cx="${end[0]}" cy="${end[1]}" r="13" fill="${route.color}" stroke="#fffdf8" stroke-width="3"/><text x="${end[0]}" y="${end[1]}" text-anchor="middle" dominant-baseline="central" fill="#fffdf8" font-size="11" font-weight="700">B</text>`;
 }
 
 if (!mapLibreAvailable) {
@@ -85,6 +86,8 @@ function showRoute(route) {
   if (mapLibreAvailable) {
     const source = map.getSource('selected-route');
     if (source) {
+      routeEndMarkers.forEach((marker) => marker.remove());
+      routeEndMarkers = [];
       source.setData({type:'FeatureCollection',features:[
         {type:'Feature',properties:{color:route.color},geometry:{type:'LineString',coordinates:route.points.map(([lat,lon])=>[lon,lat])}},
         ...[route.points[0],route.points.at(-1)].map((point)=>({type:'Feature',properties:{color:route.color},geometry:{type:'Point',coordinates:[point[1],point[0]]}}))
@@ -92,6 +95,17 @@ function showRoute(route) {
       const bounds = new maplibregl.LngLatBounds();
       route.points.forEach(([lat,lon])=>bounds.extend([lon,lat]));
       map.fitBounds(bounds,{padding:{top:90,bottom:100,left:80,right:80},maxZoom:14,duration:500});
+      [
+        {point:route.points[0],label:'A',name:route.title.split(' → ')[0]},
+        {point:route.points.at(-1),label:'B',name:route.title.split(' → ')[1]}
+      ].forEach(({point,label,name})=>{
+        const element=document.createElement('div');
+        element.className='route-end-marker';
+        element.textContent=label;
+        element.setAttribute('aria-label',`${label}: ${name}`);
+        element.style.setProperty('--route-color',route.color);
+        routeEndMarkers.push(new maplibregl.Marker({element,anchor:'center'}).setLngLat([point[1],point[0]]).setPopup(new maplibregl.Popup({offset:16}).setText(`${label} · ${name}`)).addTo(map));
+      });
     }
   } else showFallbackRoute(route);
   caption.textContent = `${route.title} · ${route.badge.toLowerCase()} · ${route.line}`;
