@@ -15,17 +15,22 @@ const routeList = document.querySelector('#route-list');
 const caption = document.querySelector('#map-caption-text');
 const openMap = document.querySelector('#open-osm');
 const mapElement = document.querySelector('#route-map');
-const leafletAvailable = typeof window.L !== 'undefined';
+const mapLibreAvailable = typeof window.maplibregl !== 'undefined';
 let map = null;
 let activeLayer = null;
 let fallbackSvg = null;
 let fallbackRoute = null;
 let fallbackView = {x:0,y:0,w:900,h:700};
-if (leafletAvailable) {
-  map = L.map(mapElement, {scrollWheelZoom:true, zoomControl:false}).setView([41.398, 2.17], 12);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:19, attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}).addTo(map);
-  L.control.zoom({position:'topright'}).addTo(map);
-  activeLayer = L.layerGroup().addTo(map);
+if (mapLibreAvailable) {
+  map = new maplibregl.Map({container:mapElement,style:'https://tiles.openfreemap.org/styles/positron',center:[2.17,41.398],zoom:11,attributionControl:true});
+  map.addControl(new maplibregl.NavigationControl({showCompass:false}),'top-right');
+  map.on('load', () => {
+    map.addSource('selected-route',{type:'geojson',data:{type:'FeatureCollection',features:[]}});
+    map.addLayer({id:'selected-route-casing',type:'line',source:'selected-route',filter:['==',['geometry-type'],'LineString'],paint:{'line-color':'#fffdf8','line-width':9,'line-opacity':.96,'line-cap':'round','line-join':'round'}});
+    map.addLayer({id:'selected-route-line',type:'line',source:'selected-route',filter:['==',['geometry-type'],'LineString'],paint:{'line-color':['get','color'],'line-width':5,'line-opacity':.96,'line-cap':'round','line-join':'round'}});
+    map.addLayer({id:'selected-route-points',type:'circle',source:'selected-route',filter:['==',['geometry-type'],'Point'],paint:{'circle-radius':7,'circle-color':['get','color'],'circle-stroke-color':'#fffdf8','circle-stroke-width':3}});
+    showRoute(activeRoute);
+  });
 } else {
   mapElement.innerHTML = `<svg class="fallback-map" viewBox="0 0 900 700" role="img" aria-label="Mapa esquemàtic de Barcelona amb carrers i rutes"><rect width="900" height="700" fill="#f3f3eb"/><path d="M570 700H900V418L832 431 782 455 730 476 683 500 650 540Z" fill="#dcebe8"/><path d="M0 0H900V180L790 190 700 180 610 198 500 170 390 188 280 160 170 175 0 145Z" fill="#e1eadc"/><path d="M45 110C180 164 220 228 325 270S520 347 660 402 812 451 900 462M0 250C125 246 210 294 340 333S580 400 705 445 830 520 900 536M0 435C135 410 235 438 367 478S600 546 720 570 820 628 900 652M105 0C126 100 158 220 183 330S227 540 254 700M300 0C312 116 335 208 366 312S420 530 448 700M500 0C488 126 502 228 537 342S601 558 633 700M705 0C666 111 666 237 698 344S774 556 808 700" fill="none" stroke="#fffefa" stroke-width="14"/><path d="M45 110C180 164 220 228 325 270S520 347 660 402 812 451 900 462M0 250C125 246 210 294 340 333S580 400 705 445 830 520 900 536M0 435C135 410 235 438 367 478S600 546 720 570 820 628 900 652M105 0C126 100 158 220 183 330S227 540 254 700M300 0C312 116 335 208 366 312S420 530 448 700M500 0C488 126 502 228 537 342S601 558 633 700M705 0C666 111 666 237 698 344S774 556 808 700" fill="none" stroke="#e4dfd3" stroke-width="1.5"/><g fill="#829087" font-family="Arial,sans-serif" font-size="13" letter-spacing="2"><text x="250" y="78">COLLSEROLA</text><text x="140" y="285">VALLCARCA</text><text x="350" y="385">GRÀCIA</text><text x="520" y="500">CIUTAT VELLA</text><text x="755" y="493">BADALONA</text><text x="400" y="665" fill="#71958c">MEDITERRÀNIA</text></g><g id="fallback-route"></g></svg><div class="fallback-controls"><button type="button" data-zoom="in" aria-label="Apropar">+</button><button type="button" data-zoom="out" aria-label="Allunyar">−</button></div>`;
   fallbackSvg = mapElement.querySelector('svg');
@@ -51,7 +56,7 @@ function showFallbackRoute(route) {
   fallbackRoute.innerHTML = `<path d="${line}" fill="none" stroke="#fffdf8" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="${line}" fill="none" stroke="${route.color}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${start[0]}" cy="${start[1]}" r="9" fill="#fffdf8"/><circle cx="${start[0]}" cy="${start[1]}" r="6" fill="${route.color}"/><circle cx="${end[0]}" cy="${end[1]}" r="9" fill="#fffdf8"/><circle cx="${end[0]}" cy="${end[1]}" r="6" fill="${route.color}"/>`;
 }
 
-if (!leafletAvailable) {
+if (!mapLibreAvailable) {
   mapElement.classList.add('fallback-map-active');
   mapElement.querySelectorAll('[data-zoom]').forEach((button) => button.addEventListener('click', () => {
     const scale = button.dataset.zoom === 'in' ? .8 : 1.25;
@@ -76,13 +81,17 @@ function renderCards(filter='all') {
 
 function showRoute(route) {
   activeRoute = route;
-  if (leafletAvailable) {
-    activeLayer.clearLayers();
-    const line = L.polyline(route.points, {color:route.color,weight:5,opacity:.9,lineCap:'round',lineJoin:'round'}).addTo(activeLayer);
-    L.circleMarker(route.points[0], {radius:7,color:'#fffdf8',weight:3,fillColor:route.color,fillOpacity:1}).bindPopup(`<strong>Sortida</strong><br>${route.title.split(' → ')[0]}`).addTo(activeLayer);
-    L.circleMarker(route.points.at(-1), {radius:7,color:'#fffdf8',weight:3,fillColor:route.color,fillOpacity:1}).bindPopup(`<strong>Arribada</strong><br>${route.title.split(' → ')[1]}`).addTo(activeLayer);
-    line.bindPopup(`<strong>${route.title}</strong><br>${route.badge} · ${route.line}`);
-    map.fitBounds(line.getBounds(), {padding:[52,52],maxZoom:14});
+  if (mapLibreAvailable) {
+    const source = map.getSource('selected-route');
+    if (source) {
+      source.setData({type:'FeatureCollection',features:[
+        {type:'Feature',properties:{color:route.color},geometry:{type:'LineString',coordinates:route.points.map(([lat,lon])=>[lon,lat])}},
+        ...[route.points[0],route.points.at(-1)].map((point)=>({type:'Feature',properties:{color:route.color},geometry:{type:'Point',coordinates:[point[1],point[0]]}}))
+      ]});
+      const bounds = new maplibregl.LngLatBounds();
+      route.points.forEach(([lat,lon])=>bounds.extend([lon,lat]));
+      map.fitBounds(bounds,{padding:{top:90,bottom:100,left:80,right:80},maxZoom:14,duration:500});
+    }
   } else showFallbackRoute(route);
   caption.textContent = `${route.title} · ${route.badge.toLowerCase()} · ${route.line}`;
   openMap.href = `https://www.openstreetmap.org/?mlat=${route.points[0][0]}&mlon=${route.points[0][1]}#map=13/${route.points[0][0]}/${route.points[0][1]}`;
