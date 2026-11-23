@@ -20,14 +20,13 @@ let map = null;
 let activeLayer = null;
 let fallbackSvg = null;
 let fallbackRoute = null;
+let routeOverlay = null;
 let fallbackView = {x:0,y:0,w:900,h:700};
 if (mapLibreAvailable) {
   map = new maplibregl.Map({container:mapElement,style:'https://tiles.openfreemap.org/styles/positron',center:[2.17,41.398],zoom:11,attributionControl:true});
   map.addControl(new maplibregl.NavigationControl({showCompass:false}),'top-right');
   map.on('load', () => {
-    map.addSource('selected-route',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:[]},properties:{}}});
-    map.addLayer({id:'selected-route-casing',type:'line',source:'selected-route',paint:{'line-color':'#fffdf8','line-width':15,'line-opacity':.98,'line-cap':'round','line-join':'round'}});
-    map.addLayer({id:'selected-route-line',type:'line',source:'selected-route',paint:{'line-color':'#2E7D5B','line-width':8,'line-opacity':1,'line-cap':'round','line-join':'round'}});
+    createRouteOverlay();
     showRoute(activeRoute);
   });
 } else {
@@ -36,7 +35,36 @@ if (mapLibreAvailable) {
   fallbackRoute = mapElement.querySelector('#fallback-route');
 }
 let activeRoute = routes[0];
-let routeEndMarkers = [];
+
+function createRouteOverlay() {
+  const ns = 'http://www.w3.org/2000/svg';
+  routeOverlay = document.createElementNS(ns,'svg');
+  routeOverlay.classList.add('route-overlay');
+  routeOverlay.setAttribute('aria-hidden','true');
+  routeOverlay.innerHTML = '<path class="route-overlay-halo"/><path class="route-overlay-line"/><circle class="route-overlay-start" r="9"/><circle class="route-overlay-end" r="9"/>';
+  mapElement.append(routeOverlay);
+  map.on('move',drawRouteOverlay);
+  map.on('resize',drawRouteOverlay);
+}
+
+function drawRouteOverlay() {
+  if (!map || !routeOverlay || !activeRoute) return;
+  const width = mapElement.clientWidth;
+  const height = mapElement.clientHeight;
+  routeOverlay.setAttribute('viewBox',`0 0 ${width} ${height}`);
+  const points = activeRoute.points.map(([lat,lon])=>map.project([lon,lat]));
+  const path = points.map((point,index)=>`${index?'L':'M'}${point.x} ${point.y}`).join(' ');
+  const halo = routeOverlay.querySelector('.route-overlay-halo');
+  const line = routeOverlay.querySelector('.route-overlay-line');
+  halo.setAttribute('d',path);
+  line.setAttribute('d',path);
+  line.style.stroke = activeRoute.color;
+  const [start,end] = [points[0],points.at(-1)];
+  routeOverlay.querySelector('.route-overlay-start').setAttribute('cx',start.x);
+  routeOverlay.querySelector('.route-overlay-start').setAttribute('cy',start.y);
+  routeOverlay.querySelector('.route-overlay-end').setAttribute('cx',end.x);
+  routeOverlay.querySelector('.route-overlay-end').setAttribute('cy',end.y);
+}
 
 function projectPoint([lat, lon]) {
   return [(lon - 2.08) * 5000, (41.46 - lat) * 6000];
@@ -82,25 +110,12 @@ function renderCards(filter='all') {
 function showRoute(route) {
   activeRoute = route;
   if (mapLibreAvailable) {
-    const source = map.getSource('selected-route');
-    if (source) {
-      routeEndMarkers.forEach((marker) => marker.remove());
-      routeEndMarkers = [];
-      source.setData({type:'Feature',properties:{},geometry:{type:'LineString',coordinates:route.points.map(([lat,lon])=>[lon,lat])}});
-      map.setPaintProperty('selected-route-line','line-color',route.color);
+    if (map && map.isStyleLoaded()) {
       const bounds = new maplibregl.LngLatBounds();
       route.points.forEach(([lat,lon])=>bounds.extend([lon,lat]));
       map.fitBounds(bounds,{padding:{top:90,bottom:100,left:80,right:80},maxZoom:14,duration:500});
-      [
-        {point:route.points[0],color:'#2E7D5B',name:route.title.split(' → ')[0]},
-        {point:route.points.at(-1),color:'#C27A4A',name:route.title.split(' → ')[1]}
-      ].forEach(({point,color,name})=>{
-        const element=document.createElement('div');
-        element.className='route-end-marker';
-        element.setAttribute('aria-label',name);
-        element.style.setProperty('--route-color',color);
-        routeEndMarkers.push(new maplibregl.Marker({element,anchor:'center'}).setLngLat([point[1],point[0]]).setPopup(new maplibregl.Popup({offset:16}).setText(name)).addTo(map));
-      });
+      drawRouteOverlay();
+      map.once('moveend',drawRouteOverlay);
     }
   } else showFallbackRoute(route);
   caption.textContent = `${route.title} · ${route.badge.toLowerCase()} · ${route.line}`;
@@ -114,7 +129,5 @@ document.querySelectorAll('.filter-chip').forEach((button) => button.addEventLis
 }));
 
 renderCards();
-showRoute(activeRoute);
-showRoute(activeRoute);
-showRoute(activeRoute);
+if (!mapLibreAvailable) showRoute(activeRoute);
 
