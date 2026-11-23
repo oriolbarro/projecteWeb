@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FFFDF8">
+  <title>Rutes quotidianes — Barcelona</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="mapa.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+  <script src="mapa.js" defer></script>
+</head>
+<body class="map-page">
+  <header class="map-header">
+    <a class="map-back" href="index.html"><span aria-hidden="true">←</span> Tornar a la web</a>
+    <span class="map-brand">BARCELONA · RUTES DE CADA DIA</span>
+  </header>
+  <main class="map-layout">
+    <aside class="route-panel">
+      <p class="map-eyebrow"><span></span> MOBILITAT EN PRIMERA PERSONA</p>
+      <h1>Els meus<br><em>recorreguts.</em></h1>
+      <p class="map-intro">Des de Vallcarca, els trajectes que connecten casa, estudis, esport i ciutat.</p>
+      <div class="route-filters" aria-label="Filtrar rutes">
+        <button class="filter-chip active" data-filter="all">Totes</button>
+        <button class="filter-chip" data-filter="metro">Metro</button>
+        <button class="filter-chip" data-filter="walk">A peu</button>
+        <button class="filter-chip" data-filter="car">Cotxe</button>
+      </div>
+      <div class="route-list" id="route-list" aria-live="polite"></div>
+      <p class="map-note">Els traçats són orientatius. Les rutes de metro indiquen les línies i parades principals; consulta el servei abans de sortir.</p>
+    </aside>
+    <section class="map-stage" aria-label="Mapa interactiu de Barcelona">
+      <div id="route-map" role="application" aria-label="Mapa amb rutes seleccionables de Barcelona"></div>
+      <div class="map-caption"><span class="map-live-dot"></span><span id="map-caption-text">Selecciona un recorregut per veure'l al mapa</span></div>
+      <a class="map-open" id="open-osm" href="https://www.openstreetmap.org/" target="_blank" rel="noreferrer">Obrir mapa ↗</a>
+    </section>
+  </main>
+</body>
+</html>
+
