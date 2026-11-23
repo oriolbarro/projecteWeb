@@ -116,4 +116,5 @@ document.querySelectorAll('.filter-chip').forEach((button) => button.addEventLis
 renderCards();
 showRoute(activeRoute);
 showRoute(activeRoute);
+showRoute(activeRoute);
 
