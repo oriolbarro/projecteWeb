@@ -51,24 +51,4 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   document.body.classList.add('has-scroll-reveal');
 }
 
-const globe = document.querySelector('#globe-spin');
-let previousScrollY = window.scrollY;
-let globeRotation = 0;
-let globeFrame = 0;
-
-function rotateGlobeWithScroll() {
-  if (!globe || globeFrame) return;
-  globeFrame = window.requestAnimationFrame(() => {
-    const currentScrollY = window.scrollY;
-    const scrollDelta = currentScrollY - previousScrollY;
-    if (Math.abs(scrollDelta) > 0.25) {
-      globeRotation += scrollDelta * 0.8;
-      globe.style.transform = `rotate(${globeRotation}deg)`;
-    }
-    previousScrollY = currentScrollY;
-    globeFrame = 0;
-  });
-}
-
-window.addEventListener('scroll', rotateGlobeWithScroll, { passive: true });
 
