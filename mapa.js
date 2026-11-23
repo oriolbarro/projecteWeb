@@ -25,11 +25,9 @@ if (mapLibreAvailable) {
   map = new maplibregl.Map({container:mapElement,style:'https://tiles.openfreemap.org/styles/positron',center:[2.17,41.398],zoom:11,attributionControl:true});
   map.addControl(new maplibregl.NavigationControl({showCompass:false}),'top-right');
   map.on('load', () => {
-    map.addSource('selected-route',{type:'geojson',data:{type:'FeatureCollection',features:[]}});
-    map.addLayer({id:'selected-route-casing',type:'line',source:'selected-route',filter:['==',['geometry-type'],'LineString'],paint:{'line-color':'#fffdf8','line-width':15,'line-opacity':.98,'line-cap':'round','line-join':'round'}});
-    map.addLayer({id:'selected-route-line',type:'line',source:'selected-route',filter:['==',['geometry-type'],'LineString'],paint:{'line-color':['get','color'],'line-width':8,'line-opacity':1,'line-cap':'round','line-join':'round'}});
-    map.addLayer({id:'selected-route-points-halo',type:'circle',source:'selected-route',filter:['==',['geometry-type'],'Point'],paint:{'circle-radius':12,'circle-color':'#fffdf8','circle-opacity':.95}});
-    map.addLayer({id:'selected-route-points',type:'circle',source:'selected-route',filter:['==',['geometry-type'],'Point'],paint:{'circle-radius':8,'circle-color':['get','color'],'circle-stroke-color':'#fffdf8','circle-stroke-width':2}});
+    map.addSource('selected-route',{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:[]},properties:{}}});
+    map.addLayer({id:'selected-route-casing',type:'line',source:'selected-route',paint:{'line-color':'#fffdf8','line-width':15,'line-opacity':.98,'line-cap':'round','line-join':'round'}});
+    map.addLayer({id:'selected-route-line',type:'line',source:'selected-route',paint:{'line-color':'#2E7D5B','line-width':8,'line-opacity':1,'line-cap':'round','line-join':'round'}});
     showRoute(activeRoute);
   });
 } else {
@@ -88,10 +86,8 @@ function showRoute(route) {
     if (source) {
       routeEndMarkers.forEach((marker) => marker.remove());
       routeEndMarkers = [];
-      source.setData({type:'FeatureCollection',features:[
-        {type:'Feature',properties:{color:route.color},geometry:{type:'LineString',coordinates:route.points.map(([lat,lon])=>[lon,lat])}},
-        ...[route.points[0],route.points.at(-1)].map((point)=>({type:'Feature',properties:{color:route.color},geometry:{type:'Point',coordinates:[point[1],point[0]]}}))
-      ]});
+      source.setData({type:'Feature',properties:{},geometry:{type:'LineString',coordinates:route.points.map(([lat,lon])=>[lon,lat])}});
+      map.setPaintProperty('selected-route-line','line-color',route.color);
       const bounds = new maplibregl.LngLatBounds();
       route.points.forEach(([lat,lon])=>bounds.extend([lon,lat]));
       map.fitBounds(bounds,{padding:{top:90,bottom:100,left:80,right:80},maxZoom:14,duration:500});
@@ -118,5 +114,6 @@ document.querySelectorAll('.filter-chip').forEach((button) => button.addEventLis
 }));
 
 renderCards();
+showRoute(activeRoute);
 showRoute(activeRoute);
 
