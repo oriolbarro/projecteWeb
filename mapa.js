@@ -26,9 +26,10 @@ if (mapLibreAvailable) {
   map.addControl(new maplibregl.NavigationControl({showCompass:false}),'top-right');
   map.on('load', () => {
     map.addSource('selected-route',{type:'geojson',data:{type:'FeatureCollection',features:[]}});
-    map.addLayer({id:'selected-route-casing',type:'line',source:'selected-route',filter:['==',['geometry-type'],'LineString'],paint:{'line-color':'#fffdf8','line-width':9,'line-opacity':.96,'line-cap':'round','line-join':'round'}});
-    map.addLayer({id:'selected-route-line',type:'line',source:'selected-route',filter:['==',['geometry-type'],'LineString'],paint:{'line-color':['get','color'],'line-width':5,'line-opacity':.96,'line-cap':'round','line-join':'round'}});
-    map.addLayer({id:'selected-route-points',type:'circle',source:'selected-route',filter:['==',['geometry-type'],'Point'],paint:{'circle-radius':7,'circle-color':['get','color'],'circle-stroke-color':'#fffdf8','circle-stroke-width':3}});
+    map.addLayer({id:'selected-route-casing',type:'line',source:'selected-route',filter:['==',['geometry-type'],'LineString'],paint:{'line-color':'#fffdf8','line-width':15,'line-opacity':.98,'line-cap':'round','line-join':'round'}});
+    map.addLayer({id:'selected-route-line',type:'line',source:'selected-route',filter:['==',['geometry-type'],'LineString'],paint:{'line-color':['get','color'],'line-width':8,'line-opacity':1,'line-cap':'round','line-join':'round'}});
+    map.addLayer({id:'selected-route-points-halo',type:'circle',source:'selected-route',filter:['==',['geometry-type'],'Point'],paint:{'circle-radius':12,'circle-color':'#fffdf8','circle-opacity':.95}});
+    map.addLayer({id:'selected-route-points',type:'circle',source:'selected-route',filter:['==',['geometry-type'],'Point'],paint:{'circle-radius':8,'circle-color':['get','color'],'circle-stroke-color':'#fffdf8','circle-stroke-width':2}});
     showRoute(activeRoute);
   });
 } else {
