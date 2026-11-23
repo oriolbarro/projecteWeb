@@ -55,7 +55,7 @@ function showFallbackRoute(route) {
   fallbackSvg.setAttribute('viewBox',`${fallbackView.x} ${fallbackView.y} ${fallbackView.w} ${fallbackView.h}`);
   const line = points.map((point,index) => `${index?'L':'M'}${point[0]} ${point[1]}`).join(' ');
   const start = points[0], end = points.at(-1);
-  fallbackRoute.innerHTML = `<path d="${line}" fill="none" stroke="#fffdf8" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="${line}" fill="none" stroke="${route.color}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${start[0]}" cy="${start[1]}" r="13" fill="${route.color}" stroke="#fffdf8" stroke-width="3"/><text x="${start[0]}" y="${start[1]}" text-anchor="middle" dominant-baseline="central" fill="#fffdf8" font-size="11" font-weight="700">A</text><circle cx="${end[0]}" cy="${end[1]}" r="13" fill="${route.color}" stroke="#fffdf8" stroke-width="3"/><text x="${end[0]}" y="${end[1]}" text-anchor="middle" dominant-baseline="central" fill="#fffdf8" font-size="11" font-weight="700">B</text>`;
+  fallbackRoute.innerHTML = `<path d="${line}" fill="none" stroke="#fffdf8" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="${line}" fill="none" stroke="${route.color}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${start[0]}" cy="${start[1]}" r="13" fill="#2E7D5B" stroke="#fffdf8" stroke-width="3"/><circle cx="${start[0]}" cy="${start[1]}" r="4" fill="#fffdf8"/><circle cx="${end[0]}" cy="${end[1]}" r="13" fill="#C27A4A" stroke="#fffdf8" stroke-width="3"/><circle cx="${end[0]}" cy="${end[1]}" r="4" fill="#fffdf8"/>`;
 }
 
 if (!mapLibreAvailable) {
@@ -96,15 +96,14 @@ function showRoute(route) {
       route.points.forEach(([lat,lon])=>bounds.extend([lon,lat]));
       map.fitBounds(bounds,{padding:{top:90,bottom:100,left:80,right:80},maxZoom:14,duration:500});
       [
-        {point:route.points[0],label:'A',name:route.title.split(' → ')[0]},
-        {point:route.points.at(-1),label:'B',name:route.title.split(' → ')[1]}
-      ].forEach(({point,label,name})=>{
+        {point:route.points[0],color:'#2E7D5B',name:route.title.split(' → ')[0]},
+        {point:route.points.at(-1),color:'#C27A4A',name:route.title.split(' → ')[1]}
+      ].forEach(({point,color,name})=>{
         const element=document.createElement('div');
         element.className='route-end-marker';
-        element.textContent=label;
-        element.setAttribute('aria-label',`${label}: ${name}`);
-        element.style.setProperty('--route-color',route.color);
-        routeEndMarkers.push(new maplibregl.Marker({element,anchor:'center'}).setLngLat([point[1],point[0]]).setPopup(new maplibregl.Popup({offset:16}).setText(`${label} · ${name}`)).addTo(map));
+        element.setAttribute('aria-label',name);
+        element.style.setProperty('--route-color',color);
+        routeEndMarkers.push(new maplibregl.Marker({element,anchor:'center'}).setLngLat([point[1],point[0]]).setPopup(new maplibregl.Popup({offset:16}).setText(name)).addTo(map));
       });
     }
   } else showFallbackRoute(route);
