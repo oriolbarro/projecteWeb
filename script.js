@@ -33,6 +33,27 @@ window.addEventListener('scroll', updateScrollProgress, { passive: true });
 window.addEventListener('resize', updateScrollProgress);
 updateScrollProgress();
 
+const globe = document.querySelector('#globe-spin');
+let previousScrollY = window.scrollY;
+let globeRotation = 0;
+let globeFrame = 0;
+
+function spinGlobeWithScroll() {
+  if (!globe || globeFrame) return;
+  globeFrame = window.requestAnimationFrame(() => {
+    const currentScrollY = window.scrollY;
+    const scrollDelta = currentScrollY - previousScrollY;
+    if (Math.abs(scrollDelta) > 0.25) {
+      globeRotation += scrollDelta * 0.9;
+      globe.style.transform = `rotateZ(${globeRotation}deg)`;
+    }
+    previousScrollY = currentScrollY;
+    globeFrame = 0;
+  });
+}
+
+window.addEventListener('scroll', spinGlobeWithScroll, { passive: true });
+
 const sectionsToReveal = [...document.querySelectorAll('main > section:not(.hero)')];
 if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const revealObserver = new IntersectionObserver((entries, observer) => {
