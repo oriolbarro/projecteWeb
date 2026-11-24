@@ -115,6 +115,44 @@ function showFallbackRoute(route) {
   fallbackRoute.innerHTML = `<path d="${line}" fill="none" stroke="#fffdf8" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="${line}" fill="none" stroke="${route.color}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${start[0]}" cy="${start[1]}" r="13" fill="#2E7D5B" stroke="#fffdf8" stroke-width="3"/><circle cx="${start[0]}" cy="${start[1]}" r="4" fill="#fffdf8"/><circle cx="${end[0]}" cy="${end[1]}" r="13" fill="#C27A4A" stroke="#fffdf8" stroke-width="3"/><circle cx="${end[0]}" cy="${end[1]}" r="4" fill="#fffdf8"/>`;
 }
 
+function routeDistanceKm(route) {
+  const points=route.mode==='car'&&route.via?.length?[route.points[0],...route.via,route.points.at(-1)]:route.points;
+  let distance=0;
+  for(let i=1;i<points.length;i++){
+    const [[lat1,lon1],[lat2,lon2]]=[points[i-1],points[i]];
+    const radians=value=>value*Math.PI/180;
+    const dLat=radians(lat2-lat1),dLon=radians(lon2-lon1);
+    const a=Math.sin(dLat/2)**2+Math.cos(radians(lat1))*Math.cos(radians(lat2))*Math.sin(dLon/2)**2;
+    distance+=6371*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+  }
+  return distance;
+}
+
+function estimateRouteMinutes(route) {
+  const distance=routeDistanceKm(route);
+  if(route.mode==='walk') return Math.max(2,Math.ceil(distance/4.5*60));
+  if(route.mode==='car') return Math.max(4,Math.ceil(distance/(distance>15?42:27)*60)+3);
+  if(route.mode==='bus') return Math.max(5,Math.ceil(distance/13*60)+(route.points.length-1));
+  const transfers=(route.line.match(/\+/g)||[]).length;
+  return Math.max(4,Math.ceil(distance/24*60)+(route.points.length-2)+transfers*5+4);
+}
+
+function formatRouteTime(minutes) {
+  const total=Math.max(1,Math.round(minutes));
+  return total>=60?`${Math.floor(total/60)} h ${total%60} min`:`${total} min`;
+}
+
+function updateRouteTime(route,minutes,actual=false) {
+  route.durationMinutes=Math.round(minutes);
+  route.durationActual=actual;
+  const time=routeList.querySelector(`[data-id="${route.id}"] .route-time`);
+  if(time){
+    time.textContent=`${actual?'':'≈ '}${formatRouteTime(route.durationMinutes)}`;
+    time.classList.toggle('is-live',actual);
+    time.title=actual?'Temps calculat segons la ruta dels carrers':'Estimació orientativa';
+  }
+}
+
 if (!mapLibreAvailable) {
   mapElement.classList.add('fallback-map-active');
   mapElement.querySelectorAll('[data-zoom]').forEach((button) => button.addEventListener('click', () => {
@@ -129,7 +167,9 @@ function buildCard(route) {
   const scoreLabel = ({5:'Molt alta',4:'Alta',3:'Mitjana',2:'Baixa',1:'Baixa'})[score];
   const card = document.createElement('button');
   card.type = 'button'; card.className = 'route-card'; card.dataset.id = route.id;
-  card.innerHTML = `<span class="route-card-top"><span class="route-title">${route.title}</span><span class="route-mode">${route.badge}</span></span><span class="route-card-meta">${route.meta}</span><span class="route-line" style="--route-color:${route.color}"><i></i><strong>${route.line}</strong></span><span class="route-sustainability"><span class="sustainability-score score-${score}">${score}/5</span><span><strong>Sostenibilitat ${scoreLabel.toLowerCase()}</strong><span class="sustainability-meter" aria-label="${score} de 5"><i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i></span></span></span>`;
+  const minutes=route.durationMinutes??estimateRouteMinutes(route);
+  const timeLabel=`${route.durationActual?'':'≈ '}${formatRouteTime(minutes)}`;
+  card.innerHTML = `<span class="route-card-top"><span class="route-title">${route.title}</span><span class="route-mode">${route.badge}</span></span><span class="route-card-meta">${route.meta}</span><span class="route-line" style="--route-color:${route.color}"><i></i><strong>${route.line}</strong><span class="route-time${route.durationActual?' is-live':''}" title="${route.durationActual?'Temps calculat segons la ruta dels carrers':'Estimació orientativa'}">${timeLabel}</span></span><span class="route-sustainability"><span class="sustainability-score score-${score}">${score}/5</span><span><strong>Sostenibilitat ${scoreLabel.toLowerCase()}</strong><span class="sustainability-meter" aria-label="${score} de 5"><i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i></span></span></span>`;
   card.querySelectorAll('.sustainability-meter i').forEach((dot,index)=>dot.classList.toggle('filled',index<score));
   card.addEventListener('click', () => showRoute(route));
   return card;
@@ -160,7 +200,10 @@ function showRoute(route) {
       if (route.mode === 'car' || route.mode === 'walk') calculateStreetRoute(route,requestSequence);
     }
   } else showFallbackRoute(route);
-  caption.textContent = `${route.title} · ${route.badge.toLowerCase()} · ${route.line}`;
+  const cachedGeometry=routeGeometryCache.get(route.id);
+  const routeMinutes=cachedGeometry?.durationMinutes??route.durationMinutes??estimateRouteMinutes(route);
+  const exactTime=Boolean(cachedGeometry||route.durationActual);
+  caption.textContent = `${route.title} · ${exactTime?'':'≈ '}${formatRouteTime(routeMinutes)} · ${route.badge.toLowerCase()} · ${route.line}`;
   const planner = document.querySelector('#transit-planner');
   const isTransit = route.mode === 'metro' || route.mode === 'bus';
   planner.hidden = !isTransit;
@@ -177,7 +220,8 @@ function calculateStreetRoute(route,sequence) {
   const cached=routeGeometryCache.get(route.id);
   if (cached) {
     activeGeometry=cached.coordinates;
-    caption.textContent=`${route.title} · ${cached.distance} km · ${route.mode==='walk'?'a peu':'cotxe'}`;
+    updateRouteTime(route,cached.durationMinutes,true);
+    caption.textContent=`${route.title} · ${cached.distance} km · ${formatRouteTime(cached.durationMinutes)} · ${route.mode==='walk'?'a peu':'cotxe'}`;
     drawRouteOverlay();
     return;
   }
@@ -199,14 +243,16 @@ function calculateStreetRoute(route,sequence) {
       const shortest=[...result.routes].sort((a,b)=>a.distance-b.distance)[0];
       const coordinates=shortest.geometry.coordinates.map(([lon,lat])=>[lat,lon]);
       const distance=(shortest.distance/1000).toFixed(1);
-      routeGeometryCache.set(route.id,{coordinates,distance});
+      const durationMinutes=Math.round(shortest.duration/60);
+      routeGeometryCache.set(route.id,{coordinates,distance,durationMinutes});
       if (sequence!==routeLookupSequence) return;
       activeGeometry=coordinates;
+      updateRouteTime(route,durationMinutes,true);
       drawRouteOverlay();
       const bounds=new maplibregl.LngLatBounds();
       coordinates.forEach(([lat,lon])=>bounds.extend([lon,lat]));
       map.fitBounds(bounds,{padding:{top:90,bottom:100,left:80,right:80},maxZoom:15,duration:450});
-      caption.textContent=`${route.title} · ${distance} km · ${route.mode==='walk'?'a peu':'cotxe'} · camí més curt trobat`;
+      caption.textContent=`${route.title} · ${distance} km · ${formatRouteTime(durationMinutes)} · ${route.mode==='walk'?'a peu':'cotxe'} · camí més curt trobat`;
     } catch (error) {
       if (sequence!==routeLookupSequence) return;
       caption.textContent=`${route.title} · camí orientatiu; no s’ha pogut verificar ara`;
