@@ -8,7 +8,31 @@ const routes = [
   {id:'parc-guell',title:'Vallcarca → Parc Güell',mode:'walk',badge:'A PEU',meta:'Un passeig de barri fins a una de les grans portes del parc.',line:'A peu',color:'#80A86F',points:[vallcarca,[41.411,2.149],[41.4118,2.154],[41.4132,2.159],[41.4145,2.162],[41.4145,2.1635]]},
   {id:'casa-vicens',title:'Vallcarca → Casa Vicens',mode:'walk',badge:'A PEU',meta:'Baixant pels carrers de Gràcia fins a la primera casa de Gaudí.',line:'A peu',color:'#80A86F',points:[vallcarca,[41.4099,2.148],[41.4077,2.151],[41.405,2.153],[41.402,2.151],[41.4031,2.1512]]},
   {id:'elisava-barceloneta',title:'Elisava → Barceloneta',mode:'walk',badge:'A PEU',meta:'Des de La Rambla, travessant el Gòtic fins al mar.',line:'A peu',color:'#80A86F',points:[elisava,[41.3772,2.176],[41.3756,2.1778],[41.377,2.181],[41.379,2.184],[41.381,2.187],[41.384,2.19],[41.3853,2.1922]]},
-  {id:'vallcarca-camp-nou',title:'Vallcarca → Spotify Camp Nou',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3 fins a Les Corts i tram final a peu.',line:'L3',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3874,2.1574],[41.3847,2.1494],[41.3805,2.1348],[41.3808,2.1225]]}
+  {id:'vallcarca-camp-nou',title:'Vallcarca → Spotify Camp Nou',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3 fins a Les Corts i tram final a peu.',line:'L3',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3874,2.1574],[41.3847,2.1494],[41.3805,2.1348],[41.3808,2.1225]]},
+  {id:'sagrada-familia-metro',title:'Vallcarca → Sagrada Família',mode:'metro',badge:'METRO',meta:'L3 fins a Diagonal i transbord a L5.',line:'L3 + L5',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.396,2.163],[41.4037,2.1744]]},
+  {id:'passeig-gracia-metro',title:'Vallcarca → Passeig de Gràcia',mode:'metro',badge:'METRO',meta:'Un trajecte directe per la L3.',line:'L3',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649]]},
+  {id:'pl-catalunya-metro',title:'Vallcarca → Plaça Catalunya',mode:'metro',badge:'METRO',meta:'La L3 connecta el barri amb el centre.',line:'L3',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699]]},
+  {id:'sants-metro',title:'Vallcarca → Sants Estació',mode:'metro',badge:'METRO',meta:'L3 directa fins a l’estació de Sants.',line:'L3',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.3801,2.1738],[41.3768,2.1774],[41.3755,2.1495]]},
+  {id:'pl-espanya-metro',title:'Vallcarca → Plaça Espanya',mode:'metro',badge:'METRO',meta:'L3 directa fins a Montjuïc i Fira.',line:'L3',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.3785,2.1665]]},
+  {id:'poble-sec-metro',title:'Vallcarca → Poble-sec',mode:'metro',badge:'METRO',meta:'La L3 baixa directament cap al Poble-sec.',line:'L3',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.3801,2.1738]]},
+  {id:'sarria-transit',title:'Vallcarca → Sarrià',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3 i connexió amb FGC cap a la zona alta.',line:'L3 + FGC',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.395,2.135]]},
+  {id:'vallvidrera-transit',title:'Vallcarca → Vallvidrera',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'Metro, FGC i funicular fins a la muntanya.',line:'L3 + FGC + funicular',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.395,2.135],[41.404,2.105],[41.414,2.097]]},
+  {id:'tibidabo-transit',title:'Vallcarca → Tibidabo',mode:'bus',badge:'TRANSPORT PÚBLIC',meta:'Metro i connexió de bus cap a l’avinguda del Tibidabo.',line:'L3 + bus',color:'#8865A6',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.410,2.13],[41.414,2.12],[41.421,2.12]]},
+  {id:'ciutadella-metro',title:'Vallcarca → Parc de la Ciutadella',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3, connexió amb L1 i tram final a peu.',line:'L3 + L1',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.385,2.18],[41.388,2.187]]},
+  {id:'barceloneta-metro',title:'Vallcarca → Barceloneta',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3 fins a Drassanes i passeig fins a la platja.',line:'L3 + a peu',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.3801,2.1738],[41.3768,2.1774],[41.379,2.19],[41.3853,2.1922]]},
+  {id:'badalona-beach-metro',title:'Vallcarca → Platja de Badalona',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3, connexió amb L2 i tram final fins al mar.',line:'L3 + L2',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3952,2.1702],[41.4037,2.1744],[41.4117,2.1877],[41.4214,2.2017],[41.4284,2.2191],[41.4424,2.2321],[41.445,2.25]]},
+  {id:'forum-metro',title:'Vallcarca → Parc del Fòrum',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3 i connexió amb metro i tramvia cap al litoral.',line:'L3 + L1 + tram',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.385,2.18],[41.411,2.22],[41.411,2.23]]},
+  {id:'gracia-walk',title:'Vallcarca → Vila de Gràcia',mode:'walk',badge:'A PEU',meta:'Carrers de barri fins a les places de Gràcia.',line:'A peu',color:'#80A86F',points:[vallcarca,[41.4099,2.148],[41.4077,2.151],[41.405,2.153],[41.402,2.155],[41.401,2.158]]},
+  {id:'lesseps-walk',title:'Vallcarca → Plaça Lesseps',mode:'walk',badge:'A PEU',meta:'Un trajecte curt pel barri fins a Lesseps.',line:'A peu',color:'#80A86F',points:[vallcarca,[41.4108,2.146],[41.4097,2.1497],[41.4085,2.152]]},
+  {id:'putxet-walk',title:'Vallcarca → Turó del Putxet',mode:'walk',badge:'A PEU',meta:'Passeig verd per un dels turons de Barcelona.',line:'A peu',color:'#80A86F',points:[vallcarca,[41.4122,2.14],[41.408,2.135],[41.405,2.137],[41.403,2.14]]},
+  {id:'carmel-walk',title:'Vallcarca → El Carmel',mode:'walk',badge:'A PEU',meta:'Ruta de pujada pels carrers del nord de Gràcia.',line:'A peu',color:'#80A86F',points:[vallcarca,[41.414,2.15],[41.416,2.158],[41.418,2.16],[41.421,2.16]]},
+  {id:'elisava-born-walk',title:'Elisava → El Born',mode:'walk',badge:'A PEU',meta:'Travessa el centre històric fins al Born.',line:'A peu',color:'#80A86F',points:[elisava,[41.379,2.178],[41.381,2.181],[41.383,2.184],[41.385,2.187]]},
+  {id:'horta-bus',title:'Vallcarca → Horta',mode:'bus',badge:'TRANSPORT PÚBLIC',meta:'Connexió de bus cap als carrers i places d’Horta.',line:'Bus urbà',color:'#8865A6',points:[vallcarca,[41.414,2.15],[41.419,2.158],[41.425,2.16],[41.429,2.164]]},
+  {id:'sant-andreu-metro',title:'Vallcarca → Sant Andreu',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3 i connexió amb L1 cap al nord de la ciutat.',line:'L3 + L1',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.385,2.18],[41.397,2.19],[41.43,2.19]]},
+  {id:'sants-car',title:'Vallcarca → Sants',mode:'car',badge:'COTXE',meta:'Travessa la ciutat cap a l’estació de Sants.',line:'Carrers urbans',color:'#C27A4A',points:[vallcarca,[41.4075,2.1532],[41.401,2.16],[41.395,2.165],[41.39,2.16],[41.385,2.15],[41.3755,2.1495]]},
+  {id:'montjuic-car',title:'Vallcarca → Montjuïc',mode:'car',badge:'COTXE',meta:'Cap a la muntanya i els equipaments de Montjuïc.',line:'Ronda de Dalt + ciutat',color:'#C27A4A',points:[vallcarca,[41.4075,2.1532],[41.4,2.16],[41.39,2.17],[41.38,2.17],[41.37,2.16],[41.365,2.15]]},
+  {id:'tibidabo-car',title:'Vallcarca → Tibidabo',mode:'car',badge:'COTXE',meta:'Pujada per la carretera de l’Arrabassada.',line:'Carretera de l’Arrabassada',color:'#C27A4A',points:[vallcarca,[41.414,2.137],[41.417,2.128],[41.42,2.12],[41.421,2.12]]},
+  {id:'poblenou-car',title:'Vallcarca → Poblenou',mode:'car',badge:'COTXE',meta:'Travessa cap al litoral i el districte tecnològic.',line:'Rondes urbanes',color:'#C27A4A',points:[vallcarca,[41.4075,2.1532],[41.4,2.165],[41.395,2.18],[41.4,2.195],[41.405,2.205]]}
 ];
 
 const routeList = document.querySelector('#route-list');
@@ -94,15 +118,21 @@ if (!mapLibreAvailable) {
 }
 
 function buildCard(route) {
+  const score = ({walk:5,metro:4,bus:3,car:1})[route.mode] ?? 1;
+  const scoreLabel = ({5:'Molt alta',4:'Alta',3:'Mitjana',2:'Baixa',1:'Baixa'})[score];
   const card = document.createElement('button');
   card.type = 'button'; card.className = 'route-card'; card.dataset.id = route.id;
-  card.innerHTML = `<span class="route-card-top"><span class="route-title">${route.title}</span><span class="route-mode">${route.badge}</span></span><span class="route-card-meta">${route.meta}</span><span class="route-line" style="--route-color:${route.color}"><i></i><strong>${route.line}</strong></span>`;
+  card.innerHTML = `<span class="route-card-top"><span class="route-title">${route.title}</span><span class="route-mode">${route.badge}</span></span><span class="route-card-meta">${route.meta}</span><span class="route-line" style="--route-color:${route.color}"><i></i><strong>${route.line}</strong></span><span class="route-sustainability"><span class="sustainability-score score-${score}">${score}/5</span><span><strong>Sostenibilitat ${scoreLabel.toLowerCase()}</strong><span class="sustainability-meter" aria-label="${score} de 5"><i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i><i class="filled"></i></span></span></span>`;
+  card.querySelectorAll('.sustainability-meter i').forEach((dot,index)=>dot.classList.toggle('filled',index<score));
   card.addEventListener('click', () => showRoute(route));
   return card;
 }
 
 function renderCards(filter='all') {
-  routeList.replaceChildren(...routes.filter((route) => filter === 'all' || route.mode === filter).map(buildCard));
+  routeList.replaceChildren(...routes.filter((route) => {
+    const score = ({walk:5,metro:4,bus:3,car:1})[route.mode] ?? 1;
+    return filter === 'all' || (filter === 'eco' ? score >= 4 : route.mode === filter);
+  }).map(buildCard));
   const selected = routeList.querySelector(`[data-id="${activeRoute.id}"]`);
   if (selected) selected.classList.add('selected');
 }
