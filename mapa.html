@@ -7,9 +7,9 @@
   <title>Rutes quotidianes — Barcelona</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.6.2/maplibre-gl.css">
-  <link rel="stylesheet" href="mapa.css?v=routes-20261124">
+  <link rel="stylesheet" href="mapa.css?v=routes-checked-20261124">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/5.6.2/maplibre-gl.js" defer></script>
-  <script src="mapa.js?v=routes-20261124" defer></script>
+  <script src="mapa.js?v=routes-checked-20261124" defer></script>
 </head>
 <body class="map-page">
   <header class="map-header">
@@ -31,11 +31,12 @@
       </div>
       <div class="route-list" id="route-list" aria-live="polite"></div>
       <div class="sustainability-key"><strong>Com llegir la sostenibilitat</strong><span><b>5/5</b> A peu · <b>4/5</b> Metro · <b>3/5</b> Bus · <b>1/5</b> Cotxe</span><p>Escala comparativa orientativa basada en els factors de CO₂ operatiu per quilòmetre del <a href="https://www.miteco.gob.es/content/dam/miteco/es/cambio-climatico/temas/mitigacion-politicas-y-medidas/HC_MITECO_2024.pdf" target="_blank" rel="noreferrer">MITECO 2024</a>. No és un càlcul exacte de cada trajecte.</p></div>
-      <p class="map-note">Els traçats són orientatius. Les rutes de metro indiquen les línies i parades principals; consulta el servei abans de sortir.</p>
+      <p class="map-note">Metro i bus: comprova a TMB les alternatives i els horaris del moment. A peu i en cotxe: el mapa calcula el camí pels carrers i mostra l’alternativa més curta entre les disponibles.</p>
     </aside>
     <section class="map-stage" aria-label="Mapa interactiu de Barcelona">
       <div id="route-map" role="application" aria-label="Mapa amb rutes seleccionables de Barcelona"></div>
-      <div class="map-caption"><span class="map-live-dot"></span><span id="map-caption-text">Selecciona un recorregut per veure'l al mapa</span></div>
+      <div class="map-caption"><span class="map-live-dot"></span><span id="map-caption-text">Selecciona un recorregut per veure'l al mapa</span><a id="transit-planner" href="https://www.tmb.cat/en/barcelona/journey-planner" target="_blank" rel="noreferrer" hidden>Comprovar a TMB ↗</a></div>
+      <div class="route-source">Rutes: OSRM · FOSSGIS · <a href="https://www.openstreetmap.org/fixthemap" target="_blank" rel="noreferrer">Informar d’un error</a></div>
       <a class="map-open" id="open-osm" href="https://www.openstreetmap.org/" target="_blank" rel="noreferrer">Obrir mapa ↗</a>
     </section>
   </main>

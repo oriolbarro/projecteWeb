@@ -4,32 +4,32 @@ const routes = [
   {id:'elisava',title:'Vallcarca → Elisava',mode:'metro',badge:'METRO · CADA DIA',meta:'L3 directa fins a Drassanes · després, un passeig curt fins a La Rambla.',line:'L3',color:'#2E7D5B',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.3801,2.1738],[41.3768,2.1774],elisava]},
   {id:'joventut-metro',title:'Vallcarca → Joventut',mode:'metro',badge:'METRO',meta:'L3 fins a Passeig de Gràcia · transbord a L2 fins a Gorg.',line:'L3 + L2',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3952,2.1702],[41.4037,2.1744],[41.4065,2.1818],[41.4117,2.1877],[41.4165,2.1943],[41.4214,2.2017],[41.4241,2.2104],[41.4284,2.2191],[41.4331,2.2271],[41.4345,2.2394],[41.4424,2.2321]]},
   {id:'joventut-car',title:'Vallcarca → Joventut',mode:'car',badge:'COTXE · PUNTUAL',meta:'Travessa la ciutat cap a Badalona i l’Olímpic.',line:'C-31',color:'#C27A4A',points:[vallcarca,[41.4075,2.1532],[41.4034,2.1612],[41.4007,2.1708],[41.3995,2.1848],[41.402,2.199],[41.4105,2.211],[41.4193,2.22],[41.4284,2.229],[41.4355,2.235],[41.4424,2.2321]]},
-  {id:'vallvidrera-car',title:'Vallcarca → Vallvidrera',mode:'car',badge:'COTXE · DIVENDRES',meta:'Pujada cap a la muntanya per la carretera de Vallvidrera.',line:'Ronda de Dalt',color:'#C27A4A',points:[vallcarca,[41.414,2.137],[41.411,2.125],[41.407,2.112],[41.405,2.1],[41.402,2.092],[41.399,2.097],[41.396,2.103],[41.394,2.108]]},
-  {id:'parc-guell',title:'Vallcarca → Parc Güell',mode:'walk',badge:'A PEU',meta:'Un passeig de barri fins a una de les grans portes del parc.',line:'A peu',color:'#80A86F',points:[vallcarca,[41.411,2.149],[41.4118,2.154],[41.4132,2.159],[41.4145,2.162],[41.4145,2.1635]]},
+  {id:'vallvidrera-car',title:'Vallcarca → Vallvidrera',mode:'car',badge:'COTXE · DIVENDRES',meta:'Pujada cap a Vallvidrera pels carrers del vessant de Collserola.',line:'Cotxe',color:'#C27A4A',points:[vallcarca,[41.407,2.137],[41.402,2.126],[41.3985,2.1256],[41.404,2.118],[41.4092,2.1112],[41.4141,2.1058],[41.416,2.097]]},
+  {id:'parc-guell',title:'Vallcarca → Parc Güell',mode:'walk',badge:'A PEU',meta:'Un passeig de barri fins a l’entrada del parc.',line:'A peu',color:'#80A86F',points:[vallcarca,[41.411,2.149],[41.4118,2.154],[41.4132,2.159],[41.4145,2.152]]},
   {id:'casa-vicens',title:'Vallcarca → Casa Vicens',mode:'walk',badge:'A PEU',meta:'Baixant pels carrers de Gràcia fins a la primera casa de Gaudí.',line:'A peu',color:'#80A86F',points:[vallcarca,[41.4099,2.148],[41.4077,2.151],[41.405,2.153],[41.402,2.151],[41.4031,2.1512]]},
-  {id:'elisava-barceloneta',title:'Elisava → Barceloneta',mode:'walk',badge:'A PEU',meta:'Des de La Rambla, travessant el Gòtic fins al mar.',line:'A peu',color:'#80A86F',points:[elisava,[41.3772,2.176],[41.3756,2.1778],[41.377,2.181],[41.379,2.184],[41.381,2.187],[41.384,2.19],[41.3853,2.1922]]},
-  {id:'vallcarca-camp-nou',title:'Vallcarca → Spotify Camp Nou',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3 fins a Les Corts i tram final a peu.',line:'L3',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3874,2.1574],[41.3847,2.1494],[41.3805,2.1348],[41.3808,2.1225]]},
-  {id:'sagrada-familia-metro',title:'Vallcarca → Sagrada Família',mode:'metro',badge:'METRO',meta:'L3 fins a Diagonal i transbord a L5.',line:'L3 + L5',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.396,2.163],[41.4037,2.1744]]},
+  {id:'elisava-barceloneta',title:'Elisava → Barceloneta',mode:'walk',badge:'A PEU',meta:'Des de La Rambla, travessant el Gòtic fins a la platja.',line:'A peu',color:'#80A86F',points:[elisava,[41.3772,2.176],[41.3756,2.1778],[41.377,2.181],[41.379,2.184],[41.3809,2.1886],[41.379,2.1925]]},
+  {id:'vallcarca-camp-nou',title:'Vallcarca → Spotify Camp Nou',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3 fins a Les Corts i tram final a peu.',line:'L3 + a peu',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.3822,2.1735],[41.3768,2.1774],[41.3755,2.1667],[41.3756,2.1618],[41.3755,2.1495],[41.3794,2.14],[41.382,2.133],[41.385,2.128],[41.3808,2.1225]]},
+  {id:'sagrada-familia-metro',title:'Vallcarca → Sagrada Família',mode:'metro',badge:'METRO',meta:'L3 fins a Diagonal i transbord a L5.',line:'L3 + L5',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.403,2.171],[41.4037,2.1744]]},
   {id:'passeig-gracia-metro',title:'Vallcarca → Passeig de Gràcia',mode:'metro',badge:'METRO',meta:'Un trajecte directe per la L3.',line:'L3',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649]]},
   {id:'pl-catalunya-metro',title:'Vallcarca → Plaça Catalunya',mode:'metro',badge:'METRO',meta:'La L3 connecta el barri amb el centre.',line:'L3',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699]]},
-  {id:'sants-metro',title:'Vallcarca → Sants Estació',mode:'metro',badge:'METRO',meta:'L3 directa fins a l’estació de Sants.',line:'L3',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.3801,2.1738],[41.3768,2.1774],[41.3755,2.1495]]},
-  {id:'pl-espanya-metro',title:'Vallcarca → Plaça Espanya',mode:'metro',badge:'METRO',meta:'L3 directa fins a Montjuïc i Fira.',line:'L3',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.3785,2.1665]]},
-  {id:'poble-sec-metro',title:'Vallcarca → Poble-sec',mode:'metro',badge:'METRO',meta:'La L3 baixa directament cap al Poble-sec.',line:'L3',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.3801,2.1738]]},
-  {id:'sarria-transit',title:'Vallcarca → Sarrià',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3 i connexió amb FGC cap a la zona alta.',line:'L3 + FGC',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.395,2.135]]},
-  {id:'vallvidrera-transit',title:'Vallcarca → Vallvidrera',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'Metro, FGC i funicular fins a la muntanya.',line:'L3 + FGC + funicular',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.395,2.135],[41.404,2.105],[41.414,2.097]]},
-  {id:'tibidabo-transit',title:'Vallcarca → Tibidabo',mode:'bus',badge:'TRANSPORT PÚBLIC',meta:'Metro i connexió de bus cap a l’avinguda del Tibidabo.',line:'L3 + bus',color:'#8865A6',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.410,2.13],[41.414,2.12],[41.421,2.12]]},
-  {id:'ciutadella-metro',title:'Vallcarca → Parc de la Ciutadella',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3, connexió amb L1 i tram final a peu.',line:'L3 + L1',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.385,2.18],[41.388,2.187]]},
-  {id:'barceloneta-metro',title:'Vallcarca → Barceloneta',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3 fins a Drassanes i passeig fins a la platja.',line:'L3 + a peu',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.3801,2.1738],[41.3768,2.1774],[41.379,2.19],[41.3853,2.1922]]},
-  {id:'badalona-beach-metro',title:'Vallcarca → Platja de Badalona',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3, connexió amb L2 i tram final fins al mar.',line:'L3 + L2',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3952,2.1702],[41.4037,2.1744],[41.4117,2.1877],[41.4214,2.2017],[41.4284,2.2191],[41.4424,2.2321],[41.445,2.25]]},
-  {id:'forum-metro',title:'Vallcarca → Parc del Fòrum',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3 i connexió amb metro i tramvia cap al litoral.',line:'L3 + L1 + tram',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.385,2.18],[41.411,2.22],[41.411,2.23]]},
+  {id:'sants-metro',title:'Vallcarca → Sants Estació',mode:'metro',badge:'METRO',meta:'L3 directa fins a l’estació de Sants.',line:'L3',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.3822,2.1735],[41.3768,2.1774],[41.3755,2.1667],[41.3756,2.1618],[41.3755,2.1495],[41.3794,2.14]]},
+  {id:'pl-espanya-metro',title:'Vallcarca → Plaça Espanya',mode:'metro',badge:'METRO',meta:'L3 directa fins a Plaça Espanya.',line:'L3',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.3822,2.1735],[41.3768,2.1774],[41.3755,2.1667],[41.3756,2.1618],[41.3755,2.1495]]},
+  {id:'poble-sec-metro',title:'Vallcarca → Poble-sec',mode:'metro',badge:'METRO',meta:'L3 directa fins a l’estació de Poble-sec.',line:'L3',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.3822,2.1735],[41.3768,2.1774],[41.3755,2.1667],[41.3756,2.1618]]},
+  {id:'sarria-transit',title:'Vallcarca → Sarrià',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3 fins a Catalunya i transbord a FGC fins a Sarrià.',line:'L3 + FGC',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3856,2.1687],[41.3928,2.158],[41.402,2.152],[41.4011,2.1471],[41.3985,2.1423],[41.3978,2.1364],[41.3978,2.1308],[41.3985,2.1256]]},
+  {id:'vallvidrera-transit',title:'Vallcarca → Vallvidrera',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3, FGC i funicular fins a Vallvidrera Superior.',line:'L3 + FGC + funicular',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3856,2.1687],[41.3928,2.158],[41.402,2.152],[41.4011,2.1471],[41.3985,2.1423],[41.3978,2.1364],[41.3978,2.1308],[41.3985,2.1256],[41.4092,2.1112],[41.4141,2.1058]]},
+  {id:'tibidabo-transit',title:'Vallcarca → Tibidabo',mode:'bus',badge:'TRANSPORT PÚBLIC',meta:'L3, FGC L7 i bus 111 fins al Tibidabo.',line:'L3 + FGC + 111',color:'#8865A6',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3856,2.1687],[41.402,2.152],[41.40965,2.1372],[41.414,2.131],[41.421,2.12]]},
+  {id:'ciutadella-metro',title:'Vallcarca → Parc de la Ciutadella',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3 fins a Catalunya, L1 fins a Arc de Triomf i passeig.',line:'L3 + L1 + a peu',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.389,2.174],[41.3938,2.181],[41.3882,2.187]]},
+  {id:'barceloneta-metro',title:'Vallcarca → Barceloneta',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3 fins a Catalunya, L4 fins a Barceloneta i passeig curt.',line:'L3 + L4 + a peu',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.3915,2.175],[41.3838,2.1802],[41.3809,2.1886],[41.379,2.1925]]},
+  {id:'badalona-beach-metro',title:'Vallcarca → Platja de Badalona',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3 fins a Passeig de Gràcia, L2 fins a Badalona Pompeu Fabra i passeig fins a la platja.',line:'L3 + L2 + a peu',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.394,2.1757],[41.4,2.18],[41.4037,2.1744],[41.405,2.185],[41.410,2.1877],[41.414,2.194],[41.418,2.2],[41.422,2.21],[41.425,2.218],[41.429,2.225],[41.4345,2.2394],[41.438,2.236],[41.4491,2.2442],[41.448,2.25]]},
+  {id:'forum-metro',title:'Vallcarca → Parc del Fòrum',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3 fins a Catalunya, L1 fins a Glòries i tramvia fins al Fòrum.',line:'L3 + L1 + tram',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.3915,2.175],[41.3856,2.1808],[41.400,2.187],[41.4037,2.19],[41.407,2.208],[41.411,2.222]]},
   {id:'gracia-walk',title:'Vallcarca → Vila de Gràcia',mode:'walk',badge:'A PEU',meta:'Carrers de barri fins a les places de Gràcia.',line:'A peu',color:'#80A86F',points:[vallcarca,[41.4099,2.148],[41.4077,2.151],[41.405,2.153],[41.402,2.155],[41.401,2.158]]},
-  {id:'lesseps-walk',title:'Vallcarca → Plaça Lesseps',mode:'walk',badge:'A PEU',meta:'Un trajecte curt pel barri fins a Lesseps.',line:'A peu',color:'#80A86F',points:[vallcarca,[41.4108,2.146],[41.4097,2.1497],[41.4085,2.152]]},
+  {id:'lesseps-walk',title:'Vallcarca → Plaça Lesseps',mode:'walk',badge:'A PEU',meta:'Un trajecte curt pel barri fins a Lesseps.',line:'A peu',color:'#80A86F',points:[vallcarca,[41.4108,2.146],[41.4097,2.1497]]},
   {id:'putxet-walk',title:'Vallcarca → Turó del Putxet',mode:'walk',badge:'A PEU',meta:'Passeig verd per un dels turons de Barcelona.',line:'A peu',color:'#80A86F',points:[vallcarca,[41.4122,2.14],[41.408,2.135],[41.405,2.137],[41.403,2.14]]},
-  {id:'carmel-walk',title:'Vallcarca → El Carmel',mode:'walk',badge:'A PEU',meta:'Ruta de pujada pels carrers del nord de Gràcia.',line:'A peu',color:'#80A86F',points:[vallcarca,[41.414,2.15],[41.416,2.158],[41.418,2.16],[41.421,2.16]]},
+  {id:'carmel-walk',title:'Vallcarca → El Carmel',mode:'walk',badge:'A PEU',meta:'Ruta de pujada pels carrers del nord de Gràcia.',line:'A peu',color:'#80A86F',points:[vallcarca,[41.414,2.15],[41.416,2.158],[41.418,2.16],[41.418,2.165]]},
   {id:'elisava-born-walk',title:'Elisava → El Born',mode:'walk',badge:'A PEU',meta:'Travessa el centre històric fins al Born.',line:'A peu',color:'#80A86F',points:[elisava,[41.379,2.178],[41.381,2.181],[41.383,2.184],[41.385,2.187]]},
-  {id:'horta-bus',title:'Vallcarca → Horta',mode:'bus',badge:'TRANSPORT PÚBLIC',meta:'Connexió de bus cap als carrers i places d’Horta.',line:'Bus urbà',color:'#8865A6',points:[vallcarca,[41.414,2.15],[41.419,2.158],[41.425,2.16],[41.429,2.164]]},
-  {id:'sant-andreu-metro',title:'Vallcarca → Sant Andreu',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3 i connexió amb L1 cap al nord de la ciutat.',line:'L3 + L1',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.385,2.18],[41.397,2.19],[41.43,2.19]]},
-  {id:'sants-car',title:'Vallcarca → Sants',mode:'car',badge:'COTXE',meta:'Travessa la ciutat cap a l’estació de Sants.',line:'Carrers urbans',color:'#C27A4A',points:[vallcarca,[41.4075,2.1532],[41.401,2.16],[41.395,2.165],[41.39,2.16],[41.385,2.15],[41.3755,2.1495]]},
+  {id:'horta-bus',title:'Vallcarca → Horta',mode:'metro',badge:'METRO',meta:'L3 fins a Vall d’Hebron i transbord a L5 fins a Horta.',line:'L3 + L5',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.410,2.15],[41.418,2.15],[41.428,2.148],[41.429,2.157],[41.429,2.164]]},
+  {id:'sant-andreu-metro',title:'Vallcarca → Sant Andreu',mode:'metro',badge:'TRANSPORT PÚBLIC',meta:'L3 fins a Catalunya i connexió amb L1 fins a Sant Andreu.',line:'L3 + L1',color:'#4A79B7',points:[vallcarca,[41.4097,2.1497],[41.4037,2.1538],[41.3954,2.1596],[41.3925,2.1649],[41.3857,2.1699],[41.3915,2.175],[41.393,2.181],[41.401,2.187],[41.41,2.187],[41.414,2.186],[41.419,2.186],[41.422,2.186],[41.43,2.19],[41.436,2.19]]},
+  {id:'sants-car',title:'Vallcarca → Sants',mode:'car',badge:'COTXE',meta:'Travessa la ciutat cap a l’estació de Sants.',line:'Carrers urbans',color:'#C27A4A',points:[vallcarca,[41.4075,2.1532],[41.401,2.16],[41.395,2.165],[41.39,2.16],[41.385,2.15],[41.3792,2.1403]]},
   {id:'montjuic-car',title:'Vallcarca → Montjuïc',mode:'car',badge:'COTXE',meta:'Cap a la muntanya i els equipaments de Montjuïc.',line:'Ronda de Dalt + ciutat',color:'#C27A4A',points:[vallcarca,[41.4075,2.1532],[41.4,2.16],[41.39,2.17],[41.38,2.17],[41.37,2.16],[41.365,2.15]]},
   {id:'tibidabo-car',title:'Vallcarca → Tibidabo',mode:'car',badge:'COTXE',meta:'Pujada per la carretera de l’Arrabassada.',line:'Carretera de l’Arrabassada',color:'#C27A4A',points:[vallcarca,[41.414,2.137],[41.417,2.128],[41.42,2.12],[41.421,2.12]]},
   {id:'poblenou-car',title:'Vallcarca → Poblenou',mode:'car',badge:'COTXE',meta:'Travessa cap al litoral i el districte tecnològic.',line:'Rondes urbanes',color:'#C27A4A',points:[vallcarca,[41.4075,2.1532],[41.4,2.165],[41.395,2.18],[41.4,2.195],[41.405,2.205]]}
@@ -45,6 +45,11 @@ let activeLayer = null;
 let fallbackSvg = null;
 let fallbackRoute = null;
 let routeOverlay = null;
+let activeGeometry = null;
+let routeLookupTimer = null;
+let routeLookupSequence = 0;
+let lastRoutingRequestAt = 0;
+const routeGeometryCache = new Map();
 let fallbackView = {x:0,y:0,w:900,h:700};
 if (mapLibreAvailable) {
   map = new maplibregl.Map({container:mapElement,style:'https://tiles.openfreemap.org/styles/positron',center:[2.17,41.398],zoom:11,attributionControl:true});
@@ -76,7 +81,7 @@ function drawRouteOverlay() {
   const width = mapElement.clientWidth;
   const height = mapElement.clientHeight;
   routeOverlay.setAttribute('viewBox',`0 0 ${width} ${height}`);
-  const points = activeRoute.points.map(([lat,lon])=>map.project([lon,lat]));
+  const points = (activeGeometry || activeRoute.points).map(([lat,lon])=>map.project([lon,lat]));
   const path = points.map((point,index)=>`${index?'L':'M'}${point.x} ${point.y}`).join(' ');
   const halo = routeOverlay.querySelector('.route-overlay-halo');
   const line = routeOverlay.querySelector('.route-overlay-line');
@@ -139,18 +144,73 @@ function renderCards(filter='all') {
 
 function showRoute(route) {
   activeRoute = route;
+  activeGeometry = route.points;
+  const requestSequence = ++routeLookupSequence;
+  if (routeLookupTimer) clearTimeout(routeLookupTimer);
   if (mapLibreAvailable) {
     if (map && map.isStyleLoaded()) {
       const bounds = new maplibregl.LngLatBounds();
-      route.points.forEach(([lat,lon])=>bounds.extend([lon,lat]));
+      const fitPoints = route.mode === 'car' || route.mode === 'walk' ? [route.points[0],route.points.at(-1)] : route.points;
+      fitPoints.forEach(([lat,lon])=>bounds.extend([lon,lat]));
       map.fitBounds(bounds,{padding:{top:90,bottom:100,left:80,right:80},maxZoom:14,duration:500});
       drawRouteOverlay();
       map.once('moveend',drawRouteOverlay);
+      if (route.mode === 'car' || route.mode === 'walk') calculateStreetRoute(route,requestSequence);
     }
   } else showFallbackRoute(route);
   caption.textContent = `${route.title} · ${route.badge.toLowerCase()} · ${route.line}`;
+  const planner = document.querySelector('#transit-planner');
+  const isTransit = route.mode === 'metro' || route.mode === 'bus';
+  planner.hidden = !isTransit;
+  if (isTransit) {
+    const [startLat,startLon]=route.points[0], [endLat,endLon]=route.points.at(-1);
+    const params=new URLSearchParams({coords__ori:`${startLon},${startLat}`,name__ori:route.title.split(' → ')[0],coords__dest:`${endLon},${endLat}`,name__dest:route.title.split(' → ')[1],near:'true'});
+    planner.href=`https://www.tmb.cat/en/barcelona/journey-planner?${params}`;
+  }
   openMap.href = `https://www.openstreetmap.org/?mlat=${route.points[0][0]}&mlon=${route.points[0][1]}#map=13/${route.points[0][0]}/${route.points[0][1]}`;
   routeList.querySelectorAll('.route-card').forEach((card) => card.classList.toggle('selected',card.dataset.id===route.id));
+}
+
+function calculateStreetRoute(route,sequence) {
+  const cached=routeGeometryCache.get(route.id);
+  if (cached) {
+    activeGeometry=cached.coordinates;
+    caption.textContent=`${route.title} · ${cached.distance} km · ${route.mode==='walk'?'a peu':'cotxe'}`;
+    drawRouteOverlay();
+    return;
+  }
+  caption.textContent=`${route.title} · cercant un itinerari de carrer…`;
+  routeLookupTimer=setTimeout(async()=>{
+    const wait=Math.max(0,1050-(Date.now()-lastRoutingRequestAt));
+    if (wait) await new Promise(resolve=>setTimeout(resolve,wait));
+    if (sequence!==routeLookupSequence) return;
+    const [startLat,startLon]=route.points[0], [endLat,endLon]=route.points.at(-1);
+    const profile=route.mode==='walk'?'foot':'car';
+    const url=`https://routing.openstreetmap.de/routed-${profile}/route/v1/driving/${startLon},${startLat};${endLon},${endLat}?overview=full&geometries=geojson&alternatives=3`;
+    try {
+      lastRoutingRequestAt=Date.now();
+      const response=await fetch(url,{signal:AbortSignal.timeout(12000)});
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const result=await response.json();
+      if (result.code!=='Ok' || !result.routes?.length) throw new Error('No route found');
+      const shortest=[...result.routes].sort((a,b)=>a.distance-b.distance)[0];
+      const coordinates=shortest.geometry.coordinates.map(([lon,lat])=>[lat,lon]);
+      const distance=(shortest.distance/1000).toFixed(1);
+      routeGeometryCache.set(route.id,{coordinates,distance});
+      if (sequence!==routeLookupSequence) return;
+      activeGeometry=coordinates;
+      drawRouteOverlay();
+      const bounds=new maplibregl.LngLatBounds();
+      coordinates.forEach(([lat,lon])=>bounds.extend([lon,lat]));
+      map.fitBounds(bounds,{padding:{top:90,bottom:100,left:80,right:80},maxZoom:15,duration:450});
+      caption.textContent=`${route.title} · ${distance} km · ${route.mode==='walk'?'a peu':'cotxe'} · camí més curt trobat`;
+    } catch (error) {
+      if (sequence!==routeLookupSequence) return;
+      caption.textContent=`${route.title} · camí orientatiu; no s’ha pogut verificar ara`;
+      activeGeometry=route.points;
+      drawRouteOverlay();
+    }
+  },350);
 }
 
 document.querySelectorAll('.filter-chip').forEach((button) => button.addEventListener('click', () => {
