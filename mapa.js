@@ -269,4 +269,3 @@ document.querySelectorAll('.filter-chip').forEach((button) => button.addEventLis
 
 renderCards();
 if (!mapLibreAvailable) showRoute(activeRoute);
-

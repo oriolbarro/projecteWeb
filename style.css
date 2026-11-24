@@ -30,4 +30,3 @@ h1,h2,h3{text-align:right}p{text-align:left}
 @media(max-width:800px){.globe-orb{top:auto;right:20px;bottom:20px}}
 @media(max-width:560px){.globe-orb{top:auto;right:16px;bottom:16px;width:54px;height:54px}.globe-spin{width:42px;height:42px}}
 @media(prefers-reduced-motion:reduce){.globe-spin{animation:none}}
-
