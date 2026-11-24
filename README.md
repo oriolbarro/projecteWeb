@@ -5,6 +5,7 @@ Web editorial i interactiva sobre mobilitat quotidiana a Barcelona.
 ## Web publicada
 - Portada: https://oriolbarro.github.io/projecteWeb/
 - Mapa: https://oriolbarro.github.io/projecteWeb/mapa.html
+- PDF per a l'entrega: https://oriolbarro.github.io/projecteWeb/output/pdf/Entrega-Camins-de-cada-dia.pdf
 - Repositori: https://github.com/oriolbarro/projecteWeb
 
 ## Obrir en local
